@@ -17,6 +17,7 @@ import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 
+
 const useStyles = makeStyles((theme) => ({
   appBar: {
     position: 'relative',
@@ -31,22 +32,22 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function AddUser(props) {
+export default function AddTariffs(props) {
   const classes = useStyles();
 
 
   return (
     <div>
-      <Dialog fullScreen open={props.props.open} onClose={()=>props.props.openUserClick(false)} TransitionComponent={Transition}>
+      <Dialog fullScreen open={props.props.open} onClose={()=>props.props.openTariffsClick(false)} TransitionComponent={Transition}>
         <AppBar className={classes.appBar}>
           <Toolbar>
-            <IconButton edge="start" color="inherit" onClick={()=>props.props.openUserClick(false)} aria-label="close">
+            <IconButton edge="start" color="inherit" onClick={()=>props.props.openTariffsClick(false)} aria-label="close">
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
               Добавить владельца:
             </Typography>
-            <Button autoFocus color="inherit" onClick={()=>props.props.openUserClick(false)}>
+            <Button autoFocus color="inherit" onClick={()=>props.props.openTariffsClick(false)}>
               Сохранить
             </Button>
           </Toolbar>
@@ -64,11 +65,15 @@ export default function AddUser(props) {
             <Container maxWidth="lg">
               <form className={`${classes.root} formIn`} noValidate autoComplete="off">
                 <div>
-                  <TextField required id="standard-required" label="Фамилия"  />
-                  <TextField required id="standard-disabled" label="Имя"  />
-                  <TextField required id="standard-disabled" label="Отчество"  />
-                  <TextField required id="standard-disabled" label="Телефон"  />
-                  <br/>
+                  <TextField required id="standard-required" label="Название тарифа"  />
+                  <TextField required id="standard-required" label="Стоимость в год"  />
+                  <TextField required id="standard-required" label="Режим снятия денег"  />
+                <br/>
+                  <TextField name={"withdrawal"} required id="standard-required" label="Режим снятия" SelectProps={{native: true}} select>
+                    <option value={"year"}>Годовой</option>
+                    <option value={"month"}>Месячный</option>
+                  </TextField>
+
                 </div>
               </form>
             </Container>

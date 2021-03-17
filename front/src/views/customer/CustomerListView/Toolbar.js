@@ -14,9 +14,7 @@ import {
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
 import AddSub from "./Details/addSub";
-import AddUser from "./Details/addUser";
-
-console.log(process.env)
+import AddTariffs from "./Details/addTariffs";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -39,10 +37,10 @@ const Toolbar = ({ className, ...rest }) => {
   const openSubClick = (bool) => {
     setOpenSub(bool);
   };
-  const [openUser, setOpenUser] = React.useState(false);
+  const [openTariffs, setOpenTariffs] = React.useState(false);
 
-  const openUserClick = (bool) => {
-    setOpenUser(bool);
+  const openTariffsClick = (bool) => {
+    setOpenTariffs(bool);
   };
 
   return (
@@ -55,22 +53,19 @@ const Toolbar = ({ className, ...rest }) => {
         justifyContent="flex-end"
       >
         <Button className={classes.exportButton}>
-          Показать адресатов
-        </Button>
-        <Button className={classes.exportButton}>
-          Показать владельцев
+          Показать абонентов
         </Button>
         <Button className={classes.exportButton}>
           Показать Тарифы
         </Button>
-        <Button onClick={()=>openUserClick(true)}
+        <Button onClick={()=>openTariffsClick(true)}
           className={classes.addButton}
           color="primary"
           variant="contained"
         >
-          Добавить владельца
+          Добавить тариф
         </Button>
-        <AddUser props={{open: openUser, openUserClick}}/>
+        <AddTariffs props={{open: openTariffs, openTariffsClick}}/>
         <Button onClick={()=>openSubClick(true)}
           color="primary"
           variant="contained"
