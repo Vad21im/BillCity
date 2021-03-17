@@ -54,11 +54,14 @@ const Toolbar = ({ className, ...rest }) => {
         display="flex"
         justifyContent="flex-end"
       >
-        <Button className={classes.importButton}>
-          Import
+        <Button className={classes.exportButton}>
+          Показать адресатов
         </Button>
         <Button className={classes.exportButton}>
-          Export
+          Показать владельцев
+        </Button>
+        <Button className={classes.exportButton}>
+          Показать Тарифы
         </Button>
         <Button onClick={()=>openUserClick(true)}
           className={classes.addButton}

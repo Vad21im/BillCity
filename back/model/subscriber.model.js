@@ -13,7 +13,8 @@ const subscriberSchema = mongoose.Schema({
     territoryType: String,
     geoPosition: String,
     operation: Array,
-    waterMeter: Number
+    waterMeter: Number,
+    tariffs: Array
 }, {timestamps: {}})
 
 module.exports = mongoose.model('Subscriber', subscriberSchema);

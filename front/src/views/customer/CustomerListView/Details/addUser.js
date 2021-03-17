@@ -13,6 +13,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
+import TextField from "@material-ui/core/TextField";
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -41,21 +44,35 @@ export default function AddUser(props) {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Sound
+              Добавить владельца:
             </Typography>
             <Button autoFocus color="inherit" onClick={()=>props.props.openUserClick(false)}>
-              save
+              Сохранить
             </Button>
           </Toolbar>
         </AppBar>
         <List>
-          <ListItem button>
-            <ListItemText primary="Phone ringtone" secondary="Titania" />
-          </ListItem>
-          <Divider />
-          <ListItem button>
-            <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-          </ListItem>
+          <Box
+            paddingTop={"50px"}
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+          >
+
+            {/*name: Object,*/}
+            {/*tel: String*/}
+            <Container maxWidth="lg">
+              <form className={`${classes.root} formIn`} noValidate autoComplete="off">
+                <div>
+                  <TextField required id="standard-required" label="Фамилия"  />
+                  <TextField required id="standard-disabled" label="Имя"  />
+                  <TextField required id="standard-disabled" label="Отчество"  />
+                  <TextField required id="standard-disabled" label="Телефон"  />
+                  <br/>
+                </div>
+              </form>
+            </Container>
+          </Box>
         </List>
       </Dialog>
     </div>
