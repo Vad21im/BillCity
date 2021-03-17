@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -12,6 +13,10 @@ import {
   makeStyles
 } from '@material-ui/core';
 import { Search as SearchIcon } from 'react-feather';
+import AddSub from "./Details/addSub";
+import AddUser from "./Details/addUser";
+
+console.log(process.env)
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -29,6 +34,17 @@ const useStyles = makeStyles((theme) => ({
 const Toolbar = ({ className, ...rest }) => {
   const classes = useStyles();
 
+  const [openSub, setOpenSub] = React.useState(false);
+
+  const openSubClick = (bool) => {
+    setOpenSub(bool);
+  };
+  const [openUser, setOpenUser] = React.useState(false);
+
+  const openUserClick = (bool) => {
+    setOpenUser(bool);
+  };
+
   return (
     <div
       className={clsx(classes.root, className)}
@@ -44,19 +60,21 @@ const Toolbar = ({ className, ...rest }) => {
         <Button className={classes.exportButton}>
           Export
         </Button>
-        <Button
+        <Button onClick={()=>openUserClick(true)}
           className={classes.addButton}
           color="primary"
           variant="contained"
         >
           Добавить владельца
         </Button>
-        <Button
+        <AddUser props={{open: openUser, openUserClick}}/>
+        <Button onClick={()=>openSubClick(true)}
           color="primary"
           variant="contained"
         >
           Добавить адрес
         </Button>
+        <AddSub props={{open: openSub, openSubClick}}/>
       </Box>
       <Box mt={3}>
         <Card>
