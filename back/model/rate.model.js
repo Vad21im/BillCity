@@ -6,7 +6,6 @@ const rateSchema = mongoose.Schema({
     id: String,
     name: String,
     moneyMode: String,
-    owner: [{type: Schema.Types.ObjectId, ref: "User"}],
     price: Object
 }, {timestamps: {}})
 

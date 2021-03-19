@@ -123,10 +123,14 @@ export default function AddSub(props) {
                       <TextField value={values.tel} name={"tel"} required  label="Телефон"  />
                       <TextField value={values.tariffs} name={"tariffs"} required  label="Тарифы"  />
                       <br/>
-                      <Button color="primary" autoFocus color="inherit" type={"submit"}>
+                      <Button
+                        color="primary"
+                        variant="contained"
+                        type={"submit"}>
                         сохранить
                       </Button>
                     </div>
+
                   </form>
                 )}
               </Formik>

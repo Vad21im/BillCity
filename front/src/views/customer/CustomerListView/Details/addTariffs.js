@@ -16,6 +16,8 @@ import Slide from '@material-ui/core/Slide';
 import TextField from "@material-ui/core/TextField";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
+import {addTariffsFetch} from "../fetch/addTariffsFetch";
+import {Formik} from "formik";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +36,10 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AddTariffs(props) {
   const classes = useStyles();
-
+  const handleSubmitApply = async (values)=>{
+    const response = await addTariffsFetch(values)
+    props.props.openTariffsClick(false)
+  }
 
   return (
     <div>
@@ -45,11 +50,8 @@ export default function AddTariffs(props) {
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
-              Добавить владельца:
+              Добавить тариф:
             </Typography>
-            <Button autoFocus color="inherit" onClick={()=>props.props.openTariffsClick(false)}>
-              Сохранить
-            </Button>
           </Toolbar>
         </AppBar>
         <List>
@@ -62,20 +64,48 @@ export default function AddTariffs(props) {
 
             {/*name: Object,*/}
             {/*tel: String*/}
+
             <Container maxWidth="lg">
-              <form className={`${classes.root} formIn`} noValidate autoComplete="off">
+              <Formik
+                initialValues={{
+                  nameTariff: 'asf',
+                  price: 'fas',
+                  moneyMode: 'afs'
+                }}
+                onSubmit={(values, { setSubmitting }) => {
+                  handleSubmitApply(values)
+                }}
+              >
+                {({
+                    values,
+                    errors,
+                    touched,
+                    handleChange,
+                    handleBlur,
+                    handleSubmit,
+                    isSubmitting,
+                    /* and other goodies */
+                  }) => (
+              <form onSubmit={handleSubmit} className={`${classes.root} formIn`} noValidate autoComplete="off">
                 <div>
-                  <TextField required id="standard-required" label="Название тарифа"  />
-                  <TextField required id="standard-required" label="Стоимость в год"  />
-                  <TextField required id="standard-required" label="Режим снятия денег"  />
+                  <TextField value={values.nameTariff} name={"nameTariff"}  required id="standard-required" label="Название тарифа"  />
+                  <TextField value={values.price} name={"price"}   required id="standard-required" label="Стоимость в год"  />
                 <br/>
-                  <TextField name={"withdrawal"} required id="standard-required" label="Режим снятия" SelectProps={{native: true}} select>
+                  <TextField value={values.moneyMode} name={"moneyMode"}  name={"withdrawal"} required id="standard-required" label="Режим снятия" SelectProps={{native: true}} select>
                     <option value={"year"}>Годовой</option>
                     <option value={"month"}>Месячный</option>
                   </TextField>
 
                 </div>
+                <Button
+                  color="primary"
+                  variant="contained"
+                  type={"submit"}>
+                  сохранить
+                </Button>
               </form>
+                )}
+              </Formik>
             </Container>
           </Box>
         </List>

@@ -6,7 +6,10 @@ const path = require("path");
 const cors = require('cors');
 const dbConnect = require('./middlewares/dbConnect');
 dbConnect();
+
 const indexRouter = require('./routes/index');
+const addSubRouter = require('./routes/addSub')
+const addTariffRouter = require('./routes/addTariff');
 const PORT = process.env.PORT || 5000;
 
 // app.use(compression());
@@ -17,6 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
+app.use('/addSub', addSubRouter);
+app.use('/addTariff', addTariffRouter);
 
 app.get('/*',(req,res)=>{
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
