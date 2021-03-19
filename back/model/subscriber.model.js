@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const subscriberSchema = mongoose.Schema({
     id: String,
+    burn: String,
     code: Number,
     addressStreet: String,
     addressNumberHouse: String,
