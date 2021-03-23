@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -19,6 +19,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import getInitials from 'src/utils/getInitials';
+import {respChangeState} from './fetch/getSubAllFetch'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -27,19 +28,27 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+
 const Results = ({ className, customers, ...rest }) => {
   const classes = useStyles();
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
+  const [subs, setSubs] = useState([])
+  const [maximumSubs, setMaximumSubs] = useState(0)
 
 
+  useEffect(()=>{
+    respChangeState({page, limit, setPage, setSubs, setMaximumSubs})
+  },[limit, page])
 
   const handleLimitChange = (event) => {
     setLimit(event.target.value);
+    // respChangeState({page, limit, setPage, setSubs, setMaximumSubs})
   };
-
-  const handlePageChange = (event, newPage) => {
+  const handlePageChange = async (event, newPage) => {
     setPage(newPage);
+    // respChangeState({page, limit, setPage, setSubs, setMaximumSubs})
   };
 
   return (
@@ -70,7 +79,8 @@ const Results = ({ className, customers, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {customers.slice(0, limit).map((customer) => (
+              {/*slice(page*limit, page*limit+limit).*/}
+              {subs.map((customer) => (
                 <TableRow
                   hover
                   key={customer.id}
@@ -82,7 +92,7 @@ const Results = ({ className, customers, ...rest }) => {
                     >
                       <Avatar
                         className={classes.avatar}
-                        src={customer.avatarUrl}
+                        src={undefined}
                       >
                         {getInitials(customer.name)}
                       </Avatar>
@@ -90,21 +100,21 @@ const Results = ({ className, customers, ...rest }) => {
                         color="textPrimary"
                         variant="body1"
                       >
-                        {customer.name}
+                        {`${customer.lastName} ${customer.firstName} ${customer.middleName}`}
                       </Typography>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    {customer.email}
+                    {customer.balance}
                   </TableCell>
                   <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
+                    {`${customer.addressStreet}, ${customer.addressNumberHouse}, ${customer.addressCorpus}, ${customer.addressKV}`}
                   </TableCell>
                   <TableCell>
-                    {customer.phone}
+                    {customer.tel}
                   </TableCell>
                   <TableCell>
-                    {moment(customer.createdAt).format('DD/MM/YYYY')}
+                    {customer.id}
                   </TableCell>
                 </TableRow>
               ))}
@@ -114,7 +124,7 @@ const Results = ({ className, customers, ...rest }) => {
       </PerfectScrollbar>
       <TablePagination
         component="div"
-        count={customers.length}
+        count={maximumSubs}
         onChangePage={handlePageChange}
         onChangeRowsPerPage={handleLimitChange}
         page={page}

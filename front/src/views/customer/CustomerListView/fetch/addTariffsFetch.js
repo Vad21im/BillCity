@@ -2,8 +2,7 @@
 import {urlhost} from "src/fetchs/urlhost";
 
 const addTariffsFetch = async (values) => {
-  console.log(values)
-  try {
+   try {
     return await (await fetch(`${urlhost}/addTariff`, {
         method: 'POST',
         headers: {

@@ -2,7 +2,6 @@
 import {urlhost} from "src/fetchs/urlhost";
 
 const addSubFetch = async (values) => {
-  console.log(values)
   try {
     return await (await fetch(`${urlhost}/addSub`, {
         method: 'POST',
