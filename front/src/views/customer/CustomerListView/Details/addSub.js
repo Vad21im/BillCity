@@ -64,22 +64,22 @@ export default function AddSub(props) {
             <Container maxWidth="lg">
               <Formik
                 initialValues={{
-                  firstName: 'asf',
-                  lastName: 'fas',
-                  middleName: 'afs',
-                  code: '124',
-                  addressStreet: 'asffas',
-                  addressNumberHouse: '124',
-                  addressCorpus: '14',
-                  addressKV: '123',
-                  houseArea: '215',
-                  residentsCount: '3',
+                  firstName: '',
+                  lastName: '',
+                  middleName: '',
+                  code: '',
+                  addressStreet: '',
+                  addressNumberHouse: '',
+                  addressCorpus: '',
+                  addressKV: '',
+                  houseArea: '',
+                  residentsCount: '',
                   housingType: '',
                   territoryType: '',
-                  waterMeter: '2321125',
+                  waterMeter: '',
                   geoPosition: '',
-                  tel: '12215214',
-                  tariffs: '1234'
+                  tel: '',
+                  tariffs: ''
                                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   handleSubmitApply(values)
@@ -97,31 +97,31 @@ export default function AddSub(props) {
                   }) => (
                   <form onSubmit={handleSubmit} className={`${classes.root} formIn`} noValidate autoComplete="off">
                     <div>
-                      <TextField value={values.firstName} name={"firstName"} required  label="Фамилия"  />
-                      <TextField value={values.lastName} name={"lastName"} required  label="Имя"  />
-                      <TextField value={values.middleName} name={"middleName"} required  label="Отчество"  />
-                      <TextField value={values.code} name={"code"} required  label="Код"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.firstName} name={"firstName"} required  label="Фамилия"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.lastName} name={"lastName"} required  label="Имя"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.middleName} name={"middleName"} required  label="Отчество"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.code} name={"code"} required  label="Код"  />
                       <br/>
-                      <TextField value={values.addressStreet} name={"addressStreet"} required  label="Улица"  />
-                      <TextField value={values.addressNumberHouse} name={"addressNumberHouse"} required  label="Дом №"  />
-                      <TextField value={values.addressCorpus} name={"addressCorpus"} required  label="Корпус №"  />
-                      <TextField value={values.addressKV} name={"addressKV"} required  label="Квартира №"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.addressStreet} name={"addressStreet"} required  label="Улица"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.addressNumberHouse} name={"addressNumberHouse"} required  label="Дом №"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.addressCorpus} name={"addressCorpus"} required  label="Корпус №"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.addressKV} name={"addressKV"} required  label="Квартира №"  />
                       <br/>
-                      <TextField value={values.houseArea} name={"houseArea"}  required  label="Общая площадь"  />
-                      <TextField value={values.residentsCount} name={"residentsCount"} required  label="Количество жильцов"  />
-                      <TextField value={values.housingType} name={"housingType"} required  label="Вид жилья" SelectProps={{native: true}} select>
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.houseArea} name={"houseArea"}  required  label="Общая площадь"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.residentsCount} name={"residentsCount"} required  label="Количество жильцов"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.housingType} name={"housingType"} required  label="Вид жилья" SelectProps={{native: true}} select>
                         <option value={"private"}>Приватизированное</option>
                         <option value={"no private"}>Не приватизированное</option>
                       </TextField>
-                      <TextField value={values.territoryType} name={"territoryType"} required  label="Тип жилья" SelectProps={{native: true}} select>
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.territoryType} name={"territoryType"} required  label="Тип жилья" SelectProps={{native: true}} select>
                         <option value={"GOS"}>Гос-сектор</option>
                         <option value={"CHAS"}>Частный сектор</option>
                       </TextField>
                       <br/>
-                      <TextField value={values.waterMeter} name={"waterMeter"}required  label="Счетчик воды №"  />
-                      <TextField value={values.geoPosition} name={"geoPosition"}  label="Геопозиция"  />
-                      <TextField value={values.tel} name={"tel"} required  label="Телефон"  />
-                      <TextField value={values.tariffs} name={"tariffs"} required  label="Тарифы"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.waterMeter} name={"waterMeter"}required  label="Счетчик воды №"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.geoPosition} name={"geoPosition"}  label="Геопозиция"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.tel} name={"tel"} required  label="Телефон"  />
+                      <TextField onChange={handleChange} onBlur={handleBlur} value={values.tariffs} name={"tariffs"} required  label="Тарифы"  />
                       <br/>
                       <Button
                         color="primary"

@@ -68,9 +68,9 @@ export default function AddTariffs(props) {
             <Container maxWidth="lg">
               <Formik
                 initialValues={{
-                  nameTariff: 'asf',
-                  price: 'fas',
-                  moneyMode: 'afs'
+                  nameTariff: '',
+                  price: '',
+                  moneyMode: ''
                 }}
                 onSubmit={(values, { setSubmitting }) => {
                   handleSubmitApply(values)
@@ -88,10 +88,10 @@ export default function AddTariffs(props) {
                   }) => (
               <form onSubmit={handleSubmit} className={`${classes.root} formIn`} noValidate autoComplete="off">
                 <div>
-                  <TextField value={values.nameTariff} name={"nameTariff"}  required id="standard-required" label="Название тарифа"  />
-                  <TextField value={values.price} name={"price"}   required id="standard-required" label="Стоимость в год"  />
+                  <TextField onChange={handleChange} onBlur={handleBlur} value={values.nameTariff} name={"nameTariff"}  required id="standard-required" label="Название тарифа"  />
+                  <TextField onChange={handleChange} onBlur={handleBlur} value={values.price} name={"price"}   required id="standard-required" label="Стоимость в год"  />
                 <br/>
-                  <TextField value={values.moneyMode} name={"moneyMode"}  name={"withdrawal"} required id="standard-required" label="Режим снятия" SelectProps={{native: true}} select>
+                  <TextField onChange={handleChange} onBlur={handleBlur} select  SelectProps={{native: true}} value={values.moneyMode} name={"moneyMode"}  required id="standard-required" label="Режим снятия" SelectProps={{native: true}} select>
                     <option value={"year"}>Годовой</option>
                     <option value={"month"}>Месячный</option>
                   </TextField>
